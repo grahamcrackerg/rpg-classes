@@ -1,11 +1,11 @@
 public class Necromancer extends Combatant {
-    private int spirits;
-    public Necromancer(String name, int hp, int spirits) {
-        super(name,hp);
-        this.spirits = spirits;
+    private int mana;
+    public Necromancer(String name, int hp, int defense, int strength, int intel, int mana) {
+        super(name,hp,defense,strength,intel);
+        this.mana = mana;
     }
     @Override
-    public String attack() {
-        return getName() + " summons skeletons to tear apart the enemy.";
+    public void attack(Combatant target) {
+
     }
 }

@@ -1,12 +1,10 @@
 public class Rogue extends Combatant {
-    private int stealth;
-    public Rogue(String name, int hp, int stealth) {
-        super(name,hp);
-        this.stealth = stealth;
+    public Rogue(String name, int hp, int defense, int strength, int intel) {
+        super(name,hp,defense,strength,intel);
     }
     @Override
-    public String attack() {
-        return getName() + " ambushes the enemy.";
+    public void attack(Combatant target) {
+
     }
 
 }
