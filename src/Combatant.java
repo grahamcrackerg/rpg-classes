@@ -17,6 +17,6 @@ public abstract class Combatant {
     public abstract void attack(Combatant target);
     public void takeDamage(int damage, Combatant attacker) {
         hp = (int) (hp - (damage * resist()));
-        System.out.println(name + " took "+(int) (damage*resist())+" damage from "+attacker.name);
+        System.out.println(name + " took "+(int) (damage*resist())+" damage");
     }
 }
