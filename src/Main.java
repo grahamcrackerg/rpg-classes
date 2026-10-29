@@ -11,13 +11,9 @@ public static void main(String[] args) {
         }
         c.attack(dummy);
     }
-    for (Combatant c: combatants) {
-        c.attack(dummy);
-    }
-    for (Combatant c: combatants) {
-        c.attack(dummy);
-    }
-    for (Combatant c: combatants) {
-        c.attack(dummy);
+    for (int i=0; i > 4; i++) {
+        for (Combatant c: combatants) {
+            c.attack(dummy);
+        }
     }
 }

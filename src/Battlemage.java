@@ -14,7 +14,7 @@ public class Battlemage extends Combatant implements SpecialMove{
         } else {
             int dmginc = (int) Math.ceil(((double) imbue)*((double) 3/5));
             imbue -= dmginc;
-            target.takeDamage(strength + (imbue),this);
+            target.takeDamage(strength + (imbue) + 1,this);
             System.out.println(name + " strikes " + target.name + " with elemental power!");
         }
     }
