@@ -10,7 +10,7 @@ public class Necromancer extends Combatant implements SpecialMove{
         System.out.println("Absorbed part of "+target.name+"'s soul! Total: "+souls);
     }
 
-    @Override public void UseSpecialMove() {
+    @Override public void UseSpecialMove(Combatant target) {
         if (souls >= 1) {
             new Skeleton("SKELLY", 5+souls,2+souls,souls*4,souls);
             System.out.println(name + " summons a skeleton from the ground!");

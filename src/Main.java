@@ -1,19 +1,18 @@
-public static void main(String[] args) {
+import java.util.Scanner;
+public static void main(String[] args) throws IOException {
+    Scanner input = new Scanner(System.in);
     Combatant dummy = new Dummy("DUMMY",1,0,0,0);
     ArrayList<Combatant> combatants = new ArrayList<>();
-    combatants.add(new Rogue("OLLIE", 15, 3,7,5));
-    combatants.add(new Necromancer("BODHI", 12, 1,2,18));
-    combatants.add(new Battlemage("JOSHY", 22, 8,6,14,50));
-    //dummy.takeDamage(10,dummy);
-    for (Combatant c: combatants) {
-        if (c instanceof SpecialMove) {
-            ((SpecialMove) c).UseSpecialMove();
-        }
-        c.attack(dummy);
+    System.out.println(System.getProperty("user.dir"));
+    System.out.println("Welcome to the RPG!");
+
+    if (Files.exists(Path.of("save.txt"))) {
+        System.out.println("Save detected");
     }
-    for (int i=0; i > 4; i++) {
-        for (Combatant c: combatants) {
-            c.attack(dummy);
-        }
+    FileWriter writer = new FileWriter("save.txt");
+    for (Combatant c : combatants) {
+        writer.write(c.toCsv() + "\n");
     }
+    writer.close();
+
 }

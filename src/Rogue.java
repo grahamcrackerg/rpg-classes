@@ -14,7 +14,7 @@ public class Rogue extends Combatant implements SpecialMove {
         }
     }
 
-    @Override public void UseSpecialMove() {
+    @Override public void UseSpecialMove(Combatant target) {
         if (!stealth) {
            stealth = true;
            System.out.println(name + " becomes cloaked in shadow.");

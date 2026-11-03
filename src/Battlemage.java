@@ -1,9 +1,9 @@
 public class Battlemage extends Combatant implements SpecialMove{
     private int mana;
     private int imbue = 0;
-    public Battlemage(String name, int hp, int defense, int strength, int intel, int mana) {
+    public Battlemage(String name, int hp, int defense, int strength, int intel) {
         super(name,hp,defense,strength,intel);
-        this.mana = mana;
+        this.mana = 50;
     }
     @Override
     public void attack(Combatant target) {
@@ -19,7 +19,7 @@ public class Battlemage extends Combatant implements SpecialMove{
         }
     }
 
-    @Override public void UseSpecialMove() {
+    @Override public void UseSpecialMove(Combatant target) {
         if (mana >= 25) {
             imbue = (int) (imbue + intel * 1.5);
             System.out.println(name+" imbues their weapon with elemental magic.");

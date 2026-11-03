@@ -19,4 +19,8 @@ public abstract class Combatant {
         hp = (int) (hp - (damage * resist()));
         System.out.println(name + " took "+(int) (damage*resist())+" damage");
     }
+    public String toCsv() {
+        return this.getClass().getSimpleName() + "," + getName() + "," + hp + "," + defense + "," + strength + "," + intel;
+    }
+
 }
