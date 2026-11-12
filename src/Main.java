@@ -37,29 +37,57 @@ public static void main(String[] args) throws IOException {
 
                     String type = parts[0];
                     String name = parts[1];
-                    int hp = Integer.parseInt(parts[2]);
-                    int defense = Integer.parseInt(parts[3]);
-                    int strength = Integer.parseInt(parts[4]);
-                    int intel = Integer.parseInt(parts[5]);
+                    int hp;
+                    int defense;
+                    int strength;
+                    int intel;
+                    try {
+                        hp = Integer.parseInt(parts[2]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
+                    }
+                    try {
+                        defense = Integer.parseInt(parts[3]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
+                    }
+                    try {
+                        strength = Integer.parseInt(parts[4]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
+                    }
+                    try {
+                        intel = Integer.parseInt(parts[5]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
+                    }
                     if (type.equals("Rogue")) {
                         combatants.add(new Rogue(name,hp,defense,strength,intel));
-                    }
-                    if (type.equals("Battlemage")) {
+                    } else if (type.equals("Battlemage")) {
                         combatants.add(new Battlemage(name,hp,defense,strength,intel));
-                    }
-                    if (type.equals("Necromancer")) {
+                    } else if (type.equals("Necromancer")) {
                         combatants.add(new Necromancer(name,hp,defense,strength,intel));
-                    }
-                    if (type.equals("Gunslinger")) {
+                    } else if (type.equals("Gunslinger")) {
                         combatants.add(new Gunslinger(name,hp,defense,strength,intel));
-                    }
-                    if (type.equals("Chef")) {
+                    } else if (type.equals("Chef")) {
                         combatants.add(new Chef(name,hp,defense,strength,intel));
+                    } else {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
                     }
                     System.out.println(name + " added");
                 }
                 fileScanner.close();
-                System.out.println("Save loaded successfully!");
+                if (combatants.isEmpty()) {
+                    System.out.println("No characters could be loaded");
+                } else {
+                    System.out.println("Save loaded!");
+                }
+
             } catch (FileNotFoundException e) {
                 System.out.println("Save file not detected.");
             }
