@@ -25,32 +25,46 @@ public static void main(String[] args) throws IOException {
             }
         }
         if (choice == 1) {
-            Scanner fileScanner = new Scanner(new File("save.txt"));
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                String[] parts = line.split(",");
-                String type = parts[0];
-                String name = parts[1];
-                int hp = Integer.parseInt(parts[2]);
-                int defense = Integer.parseInt(parts[3]);
-                int strength = Integer.parseInt(parts[4]);
-                int intel = Integer.parseInt(parts[5]);
-                if (type.equals("Rogue")) {
-                    combatants.add(new Rogue(name,hp,defense,strength,intel));
+            try {
+                Scanner fileScanner = new Scanner(new File("save.txt"));
+                while (fileScanner.hasNextLine()) {
+                    String line = fileScanner.nextLine();
+                    String[] parts = line.split(",");
+                    if (parts.length != 6) {
+                        System.out.println("Skipping malformed line: " + line);
+                        continue;
+                    }
+
+                    String type = parts[0];
+                    String name = parts[1];
+                    int hp = Integer.parseInt(parts[2]);
+                    int defense = Integer.parseInt(parts[3]);
+                    int strength = Integer.parseInt(parts[4]);
+                    int intel = Integer.parseInt(parts[5]);
+                    if (type.equals("Rogue")) {
+                        combatants.add(new Rogue(name,hp,defense,strength,intel));
+                    }
+                    if (type.equals("Battlemage")) {
+                        combatants.add(new Battlemage(name,hp,defense,strength,intel));
+                    }
+                    if (type.equals("Necromancer")) {
+                        combatants.add(new Necromancer(name,hp,defense,strength,intel));
+                    }
+                    if (type.equals("Gunslinger")) {
+                        combatants.add(new Gunslinger(name,hp,defense,strength,intel));
+                    }
+                    if (type.equals("Chef")) {
+                        combatants.add(new Chef(name,hp,defense,strength,intel));
+                    }
+                    System.out.println(name + " added");
                 }
-                if (type.equals("Battlemage")) {
-                    combatants.add(new Battlemage(name,hp,defense,strength,intel));
-                }
-                if (type.equals("Necromancer")) {
-                    combatants.add(new Necromancer(name,hp,defense,strength,intel));
-                }
-                if (type.equals("Gunslinger")) {
-                    combatants.add(new Gunslinger(name,hp,defense,strength,intel));
-                }
-                System.out.println(name + " added");
+                fileScanner.close();
+                System.out.println("Save loaded successfully!");
+            } catch (FileNotFoundException e) {
+                System.out.println("Save file not detected.");
             }
-            fileScanner.close();
-            System.out.println("Save loaded successfully!");
+
+
         }
         if (choice == 2) {
             System.out.println("Save not loaded");
@@ -87,7 +101,8 @@ public static void main(String[] args) throws IOException {
             System.out.println("2) Battlemage");
             System.out.println("3) Necromancer");
             System.out.println("4) Gunslinger");
-            while(classchoice < 1 || classchoice > 4) {
+            System.out.println("5) Chef");
+            while(classchoice < 1 || classchoice > 5) {
                 if (input.hasNextInt()) {
                     classchoice = input.nextInt();
                     input.nextLine();
@@ -95,8 +110,8 @@ public static void main(String[] args) throws IOException {
                     input.next();
                 }
 
-                if (classchoice < 1 || classchoice > 4) {
-                    System.out.print("Type a number 1-4");
+                if (classchoice < 1 || classchoice > 5) {
+                    System.out.print("Type a number 1-5");
                 }
             }
             System.out.println("What is your character's HP?");
@@ -164,6 +179,8 @@ public static void main(String[] args) throws IOException {
                     combatants.add(new Necromancer(name,hp,defense,strength,intel));
                 case 4:
                     combatants.add(new Gunslinger(name,hp,defense,strength,intel));
+                case 5:
+                    combatants.add(new Chef(name,hp,defense,strength,intel));
             }
         }
         if (choice == 2) {
