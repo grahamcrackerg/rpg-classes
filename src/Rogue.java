@@ -6,7 +6,7 @@ public class Rogue extends Combatant implements SpecialMove {
     @Override public void attack(Combatant target) {
         if (stealth) {
             stealth = false;
-            target.takeDamage(strength*2,this);
+            target.takeDamage(strength*(2+(intel/50)),this);
             System.out.println(name + " sneak attacks " + target.name + "!");
         } else {
             target.takeDamage(strength,this);

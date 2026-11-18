@@ -6,6 +6,10 @@ public class CharacterCreator extends JFrame {
     private CardLayout cl;
     private String charname;
     private String charclass;
+    private int charhp;
+    private int chardef;
+    private int charstren;
+    private int charint;
     private JPanel mainPanel;
     private JLabel infolabel;
     public CharacterCreator() {
@@ -105,9 +109,57 @@ public class CharacterCreator extends JFrame {
         intelfield.setMaximumSize(new Dimension(400, 30));
         intelfield.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        ((AbstractDocument) hpfield.getDocument())
+                .setDocumentFilter(new NumericFilter());
+        ((AbstractDocument) defensefield.getDocument())
+                .setDocumentFilter(new NumericFilter());
         ((AbstractDocument) strengthfield.getDocument())
                 .setDocumentFilter(new NumericFilter());
+        ((AbstractDocument) intelfield.getDocument())
+                .setDocumentFilter(new NumericFilter());
+        JLabel total = new JLabel("Total stats must be 20 or less");
+        total.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JButton createButton = new JButton("Create");
+        createButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        createButton.addActionListener(e -> {
+            try {
+                charhp = Integer.parseInt(hpfield.getText());
+                chardef = Integer.parseInt(defensefield.getText());
+                charstren = Integer.parseInt(strengthfield.getText());
+                charint = Integer.parseInt(intelfield.getText());
+            } catch (NumberFormatException e2) {
+                return;
+            }
+
+            if (charhp < 1) {
+                total.setText("HP must be 1 or higher");
+                return;
+            }
+            if (chardef < 1) {
+                total.setText("Defense must be 1 or higher");
+                return;
+            }
+            if (charstren < 1) {
+                total.setText("Strength must be 1 or higher");
+                return;
+            }
+            if (charint < 1) {
+                total.setText("Intel must be 1 or higher");
+                return;
+            }
+            if (charhp + chardef + charint + charstren > 20) {
+                total.setText("Total stats must be 20 or less (Current: " + (charhp + chardef + charint + charstren) + ")");
+                return;
+            }
+
+        });
+        JButton backButton = new JButton("Back");
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        backButton.addActionListener(e -> {
+            cl.show(mainPanel, "Character Creator 1");
+        });
         panel.add(infolabel);
         panel.add(hplabel);
         panel.add(hpfield);
@@ -117,6 +169,9 @@ public class CharacterCreator extends JFrame {
         panel.add(strengthfield);
         panel.add(intellabel);
         panel.add(intelfield);
+        panel.add(total);
+        panel.add(createButton);
+        panel.add(backButton);
         return panel;
     }
 }
