@@ -81,7 +81,6 @@ public class CharacterCreator extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        System.out.println(charname);
         infolabel = new JLabel();
         infolabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -129,6 +128,7 @@ public class CharacterCreator extends JFrame {
                 charstren = Integer.parseInt(strengthfield.getText());
                 charint = Integer.parseInt(intelfield.getText());
             } catch (NumberFormatException e2) {
+                total.setText("Must fill out all fields");
                 return;
             }
 
@@ -151,6 +151,12 @@ public class CharacterCreator extends JFrame {
             if (charhp + chardef + charint + charstren > 20) {
                 total.setText("Total stats must be 20 or less (Current: " + (charhp + chardef + charint + charstren) + ")");
                 return;
+            }
+            if (charclass.equals("Rogue")) {
+                main.addCharacter(new Rogue(charname,charhp,chardef,charstren,charint));
+            }
+            if (charclass.equals("Rogue")) {
+                main.addCharacter(new Rogue(charname,charhp,chardef,charstren,charint));
             }
 
         });
