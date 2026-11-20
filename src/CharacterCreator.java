@@ -155,10 +155,18 @@ public class CharacterCreator extends JFrame {
             if (charclass.equals("Rogue")) {
                 main.addCharacter(new Rogue(charname,charhp,chardef,charstren,charint));
             }
-            if (charclass.equals("Rogue")) {
-                main.addCharacter(new Rogue(charname,charhp,chardef,charstren,charint));
+            if (charclass.equals("Battlemage")) {
+                main.addCharacter(new Battlemage(charname,charhp,chardef,charstren,charint));
             }
-
+            if (charclass.equals("Necromancer")) {
+                main.addCharacter(new Necromancer(charname,charhp,chardef,charstren,charint));
+            }
+            if (charclass.equals("Gunslinger")) {
+                main.addCharacter(new Gunslinger(charname,charhp,chardef,charstren,charint));
+            }
+            if (charclass.equals("Chef")) {
+                main.addCharacter(new Chef(charname,charhp,chardef,charstren,charint));
+            }
         });
         JButton backButton = new JButton("Back");
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);

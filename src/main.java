@@ -237,7 +237,9 @@ public class main {
             }
         }
     }
+    public static void save() {
 
+    }
     public static void addCharacter(Combatant c) {
         combatants.add(c);
     }
